@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rendor</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header>
+      <div class="container">
+        <h1 class="logo">Rendor</h1>
+        <nav>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About Me</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+      <article class="post">
+        <h1>LAME - A HTB Walkthrough</h1>
+        <p class="post-meta">By <strong>22</strong> • 5/13/2025</p>
+
+        <img src="images/lame-icon.png" alt="Post image" class="featured-image" />
+
+        <p> <br>
+          Lame — my beloved first box. This easy-rated Linux machine is a great starting point for beginners, focusing on SMB enumeration, identifying vulnerable services, and basic privilege escalation. The goal is to gain access to the system and capture both the user and root flags.
+        </p>
+
+        <p> <br>
+          This Lab includes a Guided Mode, which is available across most Easy-level labs on HTB, 
+          providing
+          step-by-step hints to help newer users complete the challenge. <!--<br>This write-up is designed specifically towards the guided mode . -->
+        </p>
+        
+        <h4><br>Target: 10.10.10.3</h4>
+
+        <h1><br>Information Gathering (Enumeration)</h1>
+        <p>
+          <br>I want to start our engagement by identifying open ports on the target system. For this, we’ll use nmap with a moderately aggressive scan to quickly identify services and potential vulnerabilities.
+        </p>
+
+<!-- Template Code / Command Prompt -->
+        <pre><code>nmap -sC -sV -T4 -Pn 10.10.10.3 -oN lame-nmap.txt</code></pre>
+
+        <p>
+          A moderately aggressive scan aimed at quickly identifying open services and potential vulnerabilities.
+          
+          <br><br><strong>-sC</strong>:  Runs Default Scripts --- scripts that perform basic checks (SSL certs, SMB enum, 
+          HTTP headers).
+          <br><strong>-sV</strong>:  Enables service version detection. Checks what version is running on each port.
+          <br><strong>-T4</strong>:  Sets scan speed to 'Aggressive' -- speeds up scan by reducing wait times, good for labs where
+          stealth isn't too much of a concern.
+          <br><strong>-oN</strong>:  Saves the scanned results in a plain-text format to a specific file (In this case,e a .txt).
+        </p>
+        
+        <br><br><img src="images/Lame-Nmapscan-ss.png" alt="Post image" class="featured-image" />
+        
+        <p><br>Based on the results shown, we have 4 ports open. Ports 21, 22, 139, and 445.
+
+        <h1><br>Exploitation</h1>
+        
+        <p><br>With these ports identified, the next step is to investigate potential vulnerabilities, particularly within the
+        <strong>SMB service</strong>, which is known for its long history of critical flaws.
+        In order to do that, we will be using <strong>Metasploit</strong>, a common penetration testing framework 
+          that simplifies the exploitation process, allowing us to search
+          for known vulnerabilities, configure exploits, and deliver payloads. </p>
+        
+        <p><br>Since we are focusing on the SMB service, we can see that port 445 is running Samba 3.0.20. Since the version is
+          known, we can search for any publicly available exploits associated with it. </p>
+        
+        <p><br> In our <strong>Metasploit</strong> console:
+         <pre><code>search 3.0.20<br>use 0</code></pre>
+        
+        <br><img src="images/lame-exploit.png" alt="Post image" class="featured-image" />
+        
+        <p> Now that we have our exploit at our disposal, we need to configure it, so 
+          Metasploit knows what actions to perform.
+          
+          <br><br><img src="images/lame-module-options.png" alt="Post image" class="featured-image" />
+          
+        <p>In the context of pentesting, LHOST refers to the <strong>local host</strong> - specifically, the address of your
+          machine. RHOSTS refers to the <strong>target</strong> machine. When you use Metasploit to exploit a target, you often need
+          to establish a reverse connection from the target back to your machine. <br> After all of that has been set, you can 
+          now run the exploit. </p>
+        
+        <pre><code>msf6 exploit(multi/samba/usermap_script) > <strong>run</strong></code></pre>
+        
+        <p>And just like that, you are now remotely connected to the target machine. </p>
+        
+        <h1><br><br>Finding the Flags </h1>
+        <p><br>You have successfully connected to the machine, now let's locate the flags. </p>
+        
+        <pre><code> ls </code></pre>
+        
+        <p>Lists the contents of the directory. Most commonly used command when navigating through
+          a file system.</p>
+        
+        <br><img src="images/lame-filenavigation.png" alt="Post image" class="featured-image" />
+        
+        <p><br>Typically, the user flag is located in the user's home directory, often in a hidden file like .user.txt. We can
+          list
+          the files and navigate to the user's directory with ls. </p>
+        
+        <p><br>Below is the command to view the user and root flags: </p>
+        
+        <pre><code> cat /home/makis/user.txt <br> Output: 46eb0024c11cf60944223e830cfe3de3 </code></pre>
+        
+        <pre><code> cat /root/root.txt<br> Output: 3b68146b94ef69dcea46c5f6d811da15</code></pre>
+        
+        
+        
+        
+        
+          
+          
+        
+        <!--
+        <p style="font-size:2em;">This text is 2x the normal size</p>
+        <p style="font-size:150%;">This text is 150% the normal size</p> -->
+
+        
+        <ul>
+
+<!-- Bullet Points 
+          <li>Use `strncpy` instead of `strcpy`</li>
+          <li>Enable compiler protections (e.g., stack canaries)</li>
+          <li>Use safe languages or runtime bounds checking</li>
+-->
+        </ul>
+
+        <section class="comments">
+          <!--
+          <h4>Comments</h4>
+          <p><em>Comments coming soon.</em></p>
+-->
+        </section>
+      </article>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Rendor. All rights reserved.</p>
+    </footer>
+  </div>
+</body>
+</html>
