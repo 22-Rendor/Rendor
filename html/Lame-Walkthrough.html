@@ -24,7 +24,7 @@
         <h1>LAME - A HTB Walkthrough</h1>
         <p class="post-meta">By <strong>22</strong> • 5/13/2025</p>
 
-        <img src="images/lame-icon.png" alt="Post image" class="featured-image" />
+        <img src="../images/lame-icon.png" alt="Post image" class="featured-image" />
 
         <p> <br>
           Lame — my beloved first box. This easy-rated Linux machine is a great starting point for beginners, focusing on SMB enumeration, identifying vulnerable services, and basic privilege escalation. The goal is to gain access to the system and capture both the user and root flags.
@@ -57,7 +57,7 @@
           <br><strong>-oN</strong>:  Saves the scanned results in a plain-text format to a specific file (In this case,e a .txt).
         </p>
         
-        <br><br><img src="images/Lame-Nmapscan-ss.png" alt="Post image" class="featured-image" />
+        <br><br><img src="../images/Lame-Nmapscan-ss.png" alt="Post image" class="featured-image" />
         
         <p><br>Based on the results shown, we have 4 ports open. Ports 21, 22, 139, and 445.
 
@@ -75,12 +75,12 @@
         <p><br> In our <strong>Metasploit</strong> console:
          <pre><code>search 3.0.20<br>use 0</code></pre>
         
-        <br><img src="images/lame-exploit.png" alt="Post image" class="featured-image" />
+        <br><img src="../images/lame-exploit.png" alt="Post image" class="featured-image" />
         
         <p> Now that we have our exploit at our disposal, we need to configure it, so 
           Metasploit knows what actions to perform.
           
-          <br><br><img src="images/lame-module-options.png" alt="Post image" class="featured-image" />
+          <br><br><img src="../images/lame-module-options.png" alt="Post image" class="featured-image" />
           
         <p>In the context of pentesting, LHOST refers to the <strong>local host</strong> - specifically, the address of your
           machine. RHOSTS refers to the <strong>target</strong> machine. When you use Metasploit to exploit a target, you often need
@@ -99,7 +99,7 @@
         <p>Lists the contents of the directory. Most commonly used command when navigating through
           a file system.</p>
         
-        <br><img src="images/lame-filenavigation.png" alt="Post image" class="featured-image" />
+        <br><img src="../images/lame-filenavigation.png" alt="Post image" class="featured-image" />
         
         <p><br>Typically, the user flag is located in the user's home directory, often in a hidden file like .user.txt. We can
           list
