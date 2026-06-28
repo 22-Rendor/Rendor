@@ -26,18 +26,19 @@ pre {
   padding: 0.5em 1em;
   border-left: 10px solid #a1cca2;
 }
-h1,h2,h3,h4,h5 {
+p {
+  margin-bottom: 0rem;
+}
+h1, h2, h3, h4, h5 {
   font-family: custom_font;
   color: #6b3fa0;
-}
+  margin-top: 1.25rem;
+  margin-bottom: 0.4rem;}
 a {
   color: #7d4db5;
 }
 a:hover {
   color: #5a3385;
-}
-h3,h4,h5 {
-  font-style: italic;
 }
 table {
   border-collapse: collapse;
