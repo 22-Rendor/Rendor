@@ -108,7 +108,7 @@ main p,
 main section p {
   font-size: 0.975rem;
   color: var(--text-muted);
-  margin-bottom: 0.15rem;
+  margin-bottom: 0.1rem;
 }
  
 section.posts article.post {
