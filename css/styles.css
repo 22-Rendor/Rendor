@@ -6,7 +6,7 @@
  
 :root {
   --bg:         #ffffff;
-  --bg-nav:     #fafafa;
+  --bg-header:  #fafafa;
   --purple:     #6b3fa0;
   --purple-mid: #7d4db5;
   --purple-dim: #5a3385;
@@ -27,107 +27,114 @@ body {
   line-height: 1.75;
   min-height: 100vh;
 }
-nav {
-  background: var(--bg-nav);
+ 
+header {
+  background: var(--bg-header);
   border-bottom: 1px solid var(--border);
-  padding: 0 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  height: 52px;
   position: sticky;
   top: 0;
   z-index: 10;
 }
  
-.nav-brand {
+header .container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+h1.logo {
   font-family: Georgia, serif;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--purple);
-  text-decoration: none;
   letter-spacing: 0.01em;
+  white-space: nowrap;
 }
- 
-.nav-links {
+
+header nav ul {
   display: flex;
-  gap: 1.5rem;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.75rem;
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
  
-.nav-links a {
+header nav ul li {
+  display: inline;
+}
+ 
+header nav ul li a {
   font-family: 'Helvetica Neue', Arial, sans-serif;
-  font-size: 0.78rem;
-  letter-spacing: 0.07em;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--text-muted);
   text-decoration: none;
   transition: color 0.15s;
 }
  
-.nav-links a:hover {
+header nav ul li a:hover {
   color: var(--purple);
 }
- 
-.page {
+main.container {
   max-width: 680px;
   margin: 0 auto;
   padding: 3.5rem 1.5rem 5rem;
 }
-.site-header {
-  margin-bottom: 3rem;
-}
  
-h1.site-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--purple);
-  margin-bottom: 0.75rem;
-}
- 
-.site-tagline {
-  font-size: 0.975rem;
-  color: var(--text-muted);
-  max-width: 560px;
-}
-h2.section-title {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--purple);
-  margin-bottom: 0.75rem;
-}
- 
-section {
+main section {
   margin-bottom: 2.75rem;
 }
  
-section + section {
+main section + section {
   border-top: 1px solid var(--border);
   padding-top: 2.5rem;
 }
-p {
+main section h2 {
+  font-family: Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--purple);
+  margin-bottom: 0.75rem;
+}
+ 
+main p,
+main section p {
   font-size: 0.975rem;
   color: var(--text-muted);
   margin-bottom: 0.6rem;
 }
  
-em {
-  font-style: italic;
+section.posts article.post {
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--border);
 }
  
-ul {
-  list-style: disc;
-  padding-left: 1.4rem;
-  margin-top: 0.5rem;
+section.posts article.post:first-of-type {
+  border-top: 1px solid var(--border);
 }
  
-ul li {
+section.posts article.post h3 {
+  font-family: Georgia, serif;
   font-size: 0.975rem;
-  color: var(--text-muted);
-  margin-bottom: 0.25rem;
+  font-weight: 700;
+  color: var(--purple-mid);
+  margin-bottom: 0.2rem;
 }
  
+section.posts article.post p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 0.2rem;
+}
 
+ 
 a {
   color: var(--purple-mid);
   text-decoration: none;
@@ -144,71 +151,26 @@ a:focus-visible {
   border-radius: 2px;
 }
  
-.post-list {
-  list-style: none;
-  padding: 0;
-  margin-top: 0.25rem;
-}
  
-.post-item {
-  display: flex;
-  align-items: baseline;
-  gap: 1rem;
-  padding: 0.6rem 0;
-  border-bottom: 1px solid var(--border);
-}
+@media (max-width: 520px) {
+  header .container {
+    height: auto;
+    padding: 0.75rem 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
  
-.post-item:first-child {
-  border-top: 1px solid var(--border);
-}
+  header nav ul {
+    gap: 1rem;
+  }
  
-.post-date {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  white-space: nowrap;
-  min-width: 90px;
-  letter-spacing: 0.03em;
-}
+  h1.logo {
+    font-size: 1rem;
+  }
  
-.post-title {
-  font-size: 0.975rem;
-  color: var(--purple-mid);
-  text-decoration: none;
-}
- 
-.post-title:hover {
-  color: var(--purple-dim);
-  text-decoration: underline;
-}
- 
-code {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 0.82rem;
-  color: #555;
-  background: #f4f0f8;
-  padding: 1px 5px;
-  border-radius: 3px;
-}
- 
-footer {
-  border-top: 1px solid var(--border);
-  padding: 1.5rem;
-  text-align: center;
-}
- 
-footer p {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-  font-size: 0.75rem;
-  color: #bbb;
-  margin: 0;
-}
-
-@media (max-width: 480px) {
-  h1.site-title    { font-size: 1.6rem; }
-  h2.section-title { font-size: 1.05rem; }
-  .post-item       { flex-direction: column; gap: 0.1rem; }
-  .post-date       { min-width: unset; }
+  main section h2 {
+    font-size: 1.05rem;
+  }
 }
  
 @media (prefers-reduced-motion: reduce) {
