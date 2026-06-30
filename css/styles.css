@@ -34,6 +34,10 @@ h1, h2, h3, h4, h5 {
   color: #6b3fa0;
   margin-top: 1.25rem;
   margin-bottom: 0.4rem;}
+h1.logo a {
+  color: inherit;
+  text-decoration: none !important;
+}
 a {
   color: #7d4db5;
 }
