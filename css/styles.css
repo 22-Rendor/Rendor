@@ -8,14 +8,20 @@ code {
   font-family: custom_mono;
 
 }
-body {
-  margin: 40px auto;
-  max-width: 650px;
-  line-height: 1.3;
-  font-size: 16px;
-  color: #444;
-  font-family: custom_font;
+<!--
+
+-->
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1.5em;   /* left/right breathing room */
+    box-sizing: border-box;
 }
+
+body {
+    margin: 0;
+}
+
 blockquote {
   font-style: italic;
   border-left: 10px solid #ccc;
