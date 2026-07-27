@@ -6,6 +6,7 @@ img {
 }
 code {
   font-family: custom_mono;
+
 }
 body {
   margin: 40px auto;
@@ -55,4 +56,54 @@ td, th {
 }
 tr:nth-child(even) {
   background-color: #dddddd;
+}
+
+.code-block {
+    position: relative;
+    margin: .5em;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    background: #2b2f3a;
+    border: 1px solid #3a3f4d;
+}
+
+.code-block pre,
+.code-block pre code {
+    font-size: 0.75em;
+    line-height: .5;
+    height: auto;  /* this controls the height of the code block */
+    max-height: auto;  /* this controls the maximum height of the code block */
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word;
+    overflow-y: visible;
+    padding: 0.5em;   /* this controls distance from edges */
+    padding-bottom: 0.5em;
+    margin: 0;
+    background: transparent;
+    color: #d4d8e0;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    background: transparent;
+    color: #9aa1b0;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, color 0.15s;
+}
+
+.copy-btn:hover {
+    background: #3a3f4d;
+    color: #ffffff;
 }

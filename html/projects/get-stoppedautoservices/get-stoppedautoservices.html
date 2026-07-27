@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Get-StoppedAutoServices</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1 class="logo"><a href="/">Rendor.org</a></h1>
+      <h2>Get-StoppedAutoServices</h2>
+      <nav>
+        <ul>
+          <li><a href="/html/projects">Back to Projects</a></li>
+        </ul>
+        Provides a PowerShell script that identifies services set to automatic but are currently stopped.
+        
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)" title="Copy">⧉</button>
+        <pre><code class="language-powershell">$regBase = 'HKLM:\SYSTEM\CurrentControlSet\Services'
+
+Get-CimInstance Win32_Service -Filter "StartMode='Auto' AND State='Stopped'" |
+    ForEach-Object {
+        $delayed = (Get-ItemProperty -Path "$regBase\$($_.Name)" -Name DelayedAutoStart -ErrorAction SilentlyContinue).DelayedAutoStart
+
+        [PSCustomObject]@{
+            Name        = $_.Name
+            DisplayName = $_.DisplayName
+            StartupType = if ($delayed -eq 1) { 'Automatic (Delayed Start)' } else { 'Automatic' }
+            State       = $_.State
+        }
+    }</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <div class="code-block">
+  <div class="terminal-titlebar">
+    <span class="dot dot-red"></span>
+    <span class="dot dot-yellow"></span>
+    <span class="dot dot-green"></span>
+    <span class="terminal-title">output</span>
+  </div>
+  <pre><code class="language-none">Name          DisplayName                  StartupType                State
+----          -----------                  -----------                -----
+xxxxxxxx      xxxxxxxxxxxxx                Automatic                  Stopped
+xxxxxxxx      xxxxxxxxxxxxx                Automatic (Delayed Start)  Stopped
+xxxxxxxx      xxxxxxxxxxxxx                Automatic                  Stopped
+xxxxxxxx      xxxxxxxxxxxxx                Automatic (Delayed Start)  Stopped
+xxxxxxxx      xxxxxxxxxxxxx                Automatic                  Stopped</code></pre>
+</div>
+    </section>
+    
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-powershell.min.js"></script>
+  <script>
+    function copyCode(button) {
+        const code = button.nextElementSibling.innerText;
+        navigator.clipboard.writeText(code).then(() => {
+            const original = button.innerText;
+            button.innerText = "✓";
+            setTimeout(() => button.innerText = original, 1200);
+        });
+    }
+  </script>
+</body>
+</html>
