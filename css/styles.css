@@ -4,10 +4,6 @@ img {
   margin-right: auto;
   width: 50%;
 }
-code {
-  font-family: custom_mono;
-
-}
 
 .container {
     max-width: 800px;
@@ -15,9 +11,14 @@ code {
     padding: 0 1.5em;   /* left/right breathing room */
     box-sizing: border-box;
 }
+header {
+  border-bottom: 1px solid #c9beb8;
+  padding-bottom: 0em;
+}
 
 body {
     margin: 0;
+    background-color: #e3dfda;
 }
 
 blockquote {
@@ -36,7 +37,7 @@ p {
 }
 h1, h2, h3, h4, h5 {
   font-family: custom_font;
-  color: #4a2a73;
+  color : #7a5289;
   margin-top: 1.25rem;
   margin-bottom: 0.4rem;}
 h1.logo a {
@@ -44,10 +45,16 @@ h1.logo a {
   text-decoration: none !important;
 }
 a {
-  color: #00a489;
+  color: #4a6fa5;
 }
 a:hover {
-  color: #5a3385;
+  color: #7a5289;
+}
+a:active {
+    color: #b5652f;   
+}
+a:visited {
+  color: #8a7666;    
 }
 table {
   border-collapse: collapse;

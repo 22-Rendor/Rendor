@@ -12,19 +12,25 @@
   <header>
     <div class="container">
       <h1 class="logo"><a href="/">Rendor.org</a></h1>
-      <h2>Get-StoppedAutoServices</h2>
       <nav>
         <ul>
-          <li><a href="/html/projects">Back to Projects</a></li>
         </ul>
-        Provides a PowerShell script that identifies services set to automatic but are currently stopped.
-        
-      </nav>
+
     </div>
   </header>
 
   <main class="container">
     <section>
+
+      <h2>Get-StoppedAutoServices</h2>
+      <nav>
+        <ul>
+          <a href="/html/projects">Back to Projects</a>
+        </ul>
+        Provides a PowerShell script that identifies services set to automatic but are currently stopped.
+        
+      </nav>
+
       <div class="code-block">
         <button class="copy-btn" onclick="copyCode(this)" title="Copy">⧉</button>
         <pre><code class="language-powershell">$regBase = 'HKLM:\SYSTEM\CurrentControlSet\Services'
