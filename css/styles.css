@@ -53,9 +53,6 @@ a:hover {
 a:active {
     color: #b5652f;   
 }
-a:visited {
-  color: #8a7666;    
-}
 table {
   border-collapse: collapse;
   width: 100%;
